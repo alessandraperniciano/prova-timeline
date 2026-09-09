@@ -1,0 +1,92 @@
+
+body {
+    /* Impostazioni generali e layout verticale della pagina */
+    font-family: Roboto ;
+    width: 100%;
+    margin: 0;
+    background-color: #92B423;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    /* Sfondo della sezione principale */
+    flex: 1;
+}
+
+#pattern{
+    /* Rimuove gli spazi predefiniti del motivo decorativo */
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+footer{
+    /* Sfondo del piè di pagina */
+    background:white;
+    flex-shrink: 0;
+}
+
+#logoFooter{
+    /* Centra il logo e aggiunge spazio interno */
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+/* =========================
+    TITOLO E DESCRIZIONE
+    ========================= */
+
+.hero {
+    width: auto;
+    margin: 0 auto;
+    padding: 10% 10%;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    /* Dimensione del titolo dell'evento */
+    font-size: 60px;
+}
+
+.hero p{
+    /* Dimensione della descrizione */
+    font-size: 18px;
+}
+
+/* Contenitore dell'immagine principale */
+.image-container {
+    width: 100%;
+}
+
+.image-container img {
+    /* La larghezza è fluida e l'altezza conserva l'aspect ratio */
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    /* Centra l'immagine all'interno del contenitore */
+    margin: 0 auto;
+
+}
+
+/* Area dedicata alla didascalia */
+.didas-section {
+    height: 55px;
+    padding: 0 20%;
+}
+
+.didas-section p {
+    /* Stile del testo della didascalia */
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    line-height: 12px;
+    font-weight: 400;
+}
