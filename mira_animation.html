@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MIRA</title>
+<link rel="stylesheet" href="style_animazione.css">
+</head>
+
+<body>
+<main class="intro" aria-label="MIRA — l'inattesa manifattura dei ragazzi">
+  <div class="logo" id="logo">
+  </div>
+  <img class="final-logo" src="imgs/MIRA_logo_scritta.png" alt="MIRA — l'inattesa manifattura dei ragazzi">
+</main>
+
+<script>
+  const logo = document.getElementById("logo");
+  logo.style.setProperty("background-image", "url('imgs/MIRA_rettangolo.png')");
+
+  // Il logo ha 12 posizioni fisse: 4 righe x 3 colonne.
+  const tileCount = 12;
+  const randomBetween = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
+
+  const imageSources = Array.from({length: 16}, (_, index) =>
+    `imgs/ritratto_crop_${String(index + 1).padStart(3, "0")}.jpg`
+  );
+
+  const shuffledImages = [...imageSources].sort(() => Math.random() - 0.5);
+  const tiles = [];
+
+  for(let i=0; i<tileCount; i++){
+      const tile = document.createElement("div");
+      tile.className = "tile";
+      const image = document.createElement("img");
+      image.className = "tile-image";
+      image.alt = "";
+      tile.appendChild(image);
+      logo.appendChild(tile);
+      tiles.push(tile);
+  }
+
+  let photoIndex = 0;
+
+  function showNextPhoto(){
+    const tile = tiles[Math.floor(Math.random() * tileCount)];
+    const image = tile.querySelector(".tile-image");
+    const x = randomBetween(-220, 220);
+    const y = randomBetween(-180, 180);
+    const rotation = randomBetween(-20, 20);
+
+    image.src = shuffledImages[photoIndex];
+    tile.style.setProperty("--x", `${x}px`);
+    tile.style.setProperty("--y", `${y}px`);
+    tile.style.setProperty("--r", `${rotation}deg`);
+    tile.className = "tile is-entering";
+
+    photoIndex++;
+
+    setTimeout(() => {
+      tile.classList.remove("is-entering");
+      tile.classList.add("is-exiting");
+
+      setTimeout(() => {
+        tile.className = "tile";
+        if(photoIndex < shuffledImages.length){
+          showNextPhoto();
+        } else {
+          document.querySelector(".intro").classList.add("is-finished");
+          setTimeout(() => {
+            window.location.href = "souvenir.html";
+          }, 3000);
+        }
+      }, 450);
+    }, 1200);
+  }
+
+  // Lascia prima visibile solo il logo, poi avvia la sequenza delle foto.
+  setTimeout(showNextPhoto, 1600);
+</script>
+</body>
+</html>

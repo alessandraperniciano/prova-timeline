@@ -1,0 +1,148 @@
+
+  :root{
+    --green:#92B418;
+    --gap:7px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+
+  body{
+    display:grid;
+    place-items:center;
+    background: white;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+
+  .intro{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:28px;
+  }
+
+  .final-logo{
+    width:auto;
+    max-width:min(75vw, 280px);
+    height:auto;
+    max-height:80px;
+    opacity:0;
+    transform:translateY(18px);
+    visibility:hidden;
+  }
+
+  .intro.is-finished .final-logo{
+    visibility:visible;
+    animation:showFinalLogo .9s ease forwards;
+  }
+
+  .logo{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-template-rows:repeat(4, 1fr);
+    gap:var(--gap);
+    width:min(52vw, 200px);
+    min-height:0;
+    aspect-ratio:169/183;
+    background:var(--green);
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    overflow:visible;
+  }
+
+  .tile{
+    width:100%;
+    height:100%;
+    min-width:0;
+    min-height:0;
+    opacity:0;
+    position:relative;
+    overflow:hidden;
+    transform:
+      translate3d(var(--x),var(--y),0)
+      rotate(var(--r))
+      scale(.45);
+  }
+
+  .tile-image{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1);
+  }
+
+  .tile.is-entering{
+    animation:assemble .45s cubic-bezier(.18,.86,.22,1) forwards;
+  }
+
+  .tile.is-exiting{
+    animation:disappear .45s ease-in forwards;
+  }
+
+  .tile.is-exiting .tile-image{
+    animation:image-disappear .45s ease-in forwards;
+  }
+
+  @keyframes assemble{
+    0%{
+      opacity:0;
+      transform:
+        translate3d(var(--x),var(--y),0)
+        rotate(var(--r))
+        scale(.45);
+    }
+    65%{
+      opacity:1;
+      transform:
+        translate3d(0,0,0)
+        rotate(0)
+        scale(1.04);
+    }
+    100%{
+      opacity:1;
+      transform:
+        translate3d(0,0,0)
+        rotate(0)
+        scale(1);
+    }
+  }
+
+  @keyframes disappear{
+    from{
+      opacity:1;
+      transform:translate3d(0,0,0) rotate(0) scale(1);
+    }
+    to{
+      opacity:0;
+      transform:translate3d(0,0,0) rotate(0) scale(.2);
+    }
+  }
+
+  @keyframes image-disappear{
+    from{
+      opacity:1;
+      transform:scale(1);
+    }
+    to{
+      opacity:0;
+      transform:scale(.35);
+    }
+  }
+
+  @keyframes showFinalLogo{
+    to{
+      opacity:1;
+      transform:translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .tile,.tile-image{
+      animation:none;
+      opacity:1;
+      transform:none;
+    }
+  }

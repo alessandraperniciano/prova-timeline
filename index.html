@@ -4,42 +4,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mira: 1565/67</title>
+    <title>Mira: cronologia</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Roboto;
+            width: 100%;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: black;
+        }
+
+        .orange1 {
+            background-color: #F29F3D;
+        }
+
+        .green {
+            background-color: #92B418;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        #pattern {
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+
+        footer {
+            background: white;
+            flex-shrink: 0;
+        }
+
+        #logoFooter {
+            padding: 0;
+            margin: 0 auto;
+            border: 0;
+            display: block;
+            padding: 20px;
+        }
+
+        .hero {
+            width: auto;
+            margin: 0 auto;
+            padding: 10% 10%;
+            text-align: center;
+            color: white;
+        }
+
+        .black {
+            color: black;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .image-container {
+            width: 100%;
+        }
+
+        .image-container img {
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .didas-section {
+            height: 55px;
+            padding: 0 20%;
+        }
+
+        .didas-section p {
+            color: white;
+            text-align: center;
+            font-size: 11px;
+            line-height: 12px;
+            font-weight: 400;
+        }
+
+        .arrow {
+            font-size: 1.2em;
+            line-height: 1;
+            font-weight: 400;
+        }
+
+        .timeline {
+            width: min(90%, 760px);
+            margin: 0 auto;
+            padding: 8vh 0;
+        }
+
+        .timeline-link {
+            display: grid;
+            grid-template-columns: 3rem 1fr auto;
+            align-items: center;
+            gap: 1.25rem;
+            padding: 1.1rem 0;
+            color: black;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+            font-size: clamp(1.4rem, 4vw, 2.5rem);
+        }
+
+        .timeline-link:first-child {
+            border-top: 1px solid rgba(0, 0, 0, 0.25);
+        }
+
+        .timeline-link:hover,
+        .timeline-link:focus-visible {
+            color: #92B418;
+        }
+
+        .timeline-year {
+            font-size: 0.65em;
+            font-weight: 400;
+        }
+
+        @media (max-width: 480px) {
+            .timeline {
+                width: 84%;
+                padding: 5vh 0;
+            }
+
+            .timeline-link {
+                grid-template-columns: 2.2rem 1fr auto;
+                gap: 0.75rem;
+                font-size: 1.35rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <!-- Contenuto principale della pagina -->
     <main>
-        <!-- Titolo e descrizione dell'evento storico -->
-        <section class="hero">
-            <h1>1565/67</h1>
-            <p>
-                Il frate Salvatore da Horta arriva a Cagliari
-                e trascorre i suoi ultimi anni nel convento.
-            </p>
+        
+
+        <section class="timeline" aria-label="Sette tappe della cronologia">
+            <a class="timeline-link" href="1565.html"><span class="timeline-year">01</span><span><strong>1565/67</strong></span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="timeline-link" href="1765.html"><span class="timeline-year">02</span><span><strong>1765</strong></span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="timeline-link" href="1800.html"><span class="timeline-year">03</span><span><strong>1800</strong></span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="timeline-link" href="1920.html"><span class="timeline-year">06</span><span><strong>1920</strong></span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="timeline-link" href="1946.html"><span class="timeline-year">04</span><span><strong>1946</strong></span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="timeline-link" href="2017.html"><span class="timeline-year">05</span><span><strong>2017</strong></span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="timeline-link" href="mira_animation.html"><span class="timeline-year">07</span><span><strong>Oggi</strong></span><span class="arrow" aria-hidden="true">&rarr;</span></a>
         </section>
 
-        <!-- Immagine principale dell'evento; l'altezza viene calcolata dal CSS -->
-        <div class="image-container">
-            <img src="img/1565_67.jpg" alt="Fotografia storica">
-        </div>
-
-        <!-- Elemento decorativo con motivo grafico -->
-        <img id="pattern" width="100%" height="100%" src="img/pattern.png">
-
-        <!-- Didascalia e fonte dell'immagine -->
-        <section class="didas-section">
-            <p>
-                San Salvatore da Horta, 1520-1567
-                <br>
-                Fonte: Collezione Piloni, Cagliari nelle sue stampe
-            </p>
-        </section>
     </main>
 
     <!-- Piè di pagina con il logo del progetto -->
