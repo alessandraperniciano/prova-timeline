@@ -42,9 +42,16 @@
   }
 
   let photoIndex = 0;
+  let previousTileIndex = -1;
 
   function showNextPhoto(){
-    const tile = tiles[Math.floor(Math.random() * tileCount)];
+    let tileIndex;
+    do {
+      tileIndex = Math.floor(Math.random() * tileCount);
+    } while(tileIndex === previousTileIndex);
+
+    previousTileIndex = tileIndex;
+    const tile = tiles[tileIndex];
     const image = tile.querySelector(".tile-image");
     const x = randomBetween(-220, 220);
     const y = randomBetween(-180, 180);
