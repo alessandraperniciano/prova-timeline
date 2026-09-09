@@ -7,11 +7,15 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    color:solid black
+    color:solid #354435;
 }
 
 .orange{
     background-color:#F29F3D;
+}
+
+.orange1{
+    background-color:#E9751F;
 }
 
 .yellow{
@@ -30,6 +34,7 @@ main {
 
 #pattern{
     /* Rimuove gli spazi predefiniti del motivo decorativo */
+    display: block;
     padding: 0px;
     margin: 0px;
     border: 0px;
@@ -66,7 +71,7 @@ footer{
 }
 
 .black {
-    color:black
+    color:#354435
 }
 
 
@@ -94,6 +99,32 @@ footer{
     /* Centra l'immagine all'interno del contenitore */
     margin: 0 auto;
 
+}
+
+.image-container[class*="equal-height-"] {
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.image-container[class*="equal-height-"] img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.equal-height-1765 {
+    aspect-ratio: 800 / 558;
+}
+
+.equal-height-1800 {
+    aspect-ratio: 12402 / 7668;
+}
+
+.equal-height-1920 {
+    aspect-ratio: 4883 / 2995;
+}
+
+.equal-height-1946 {
+    aspect-ratio: 12402 / 7702;
 }
 
 /* Area dedicata alla didascalia */
