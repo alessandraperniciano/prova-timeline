@@ -10,7 +10,7 @@ body {
     color:solid black
 }
 
-.orange1{
+.orange{
     background-color:#F29F3D;
 }
 
@@ -33,6 +33,8 @@ main {
     padding: 0px;
     margin: 0px;
     border: 0px;
+    height:auto;
+    width:100%;
 }
 
 footer{
@@ -63,8 +65,9 @@ footer{
     color: white;
 }
 
-.black
-{color:black}
+.black {
+    color:black
+}
 
 
 .hero h1 {
