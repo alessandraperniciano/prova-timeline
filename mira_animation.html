@@ -24,7 +24,7 @@
     Math.floor(Math.random() * (max - min + 1)) + min;
 
   const imageSources = Array.from({length: 16}, (_, index) =>
-    `imgs/ritratto_crop_${String(index + 1).padStart(3, "0")}.jpg`
+    `imgs/optimized/ritratto_crop_${String(index + 1).padStart(3, "0")}.jpg`
   );
 
   const shuffledImages = [...imageSources].sort(() => Math.random() - 0.5);
