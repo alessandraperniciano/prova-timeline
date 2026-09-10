@@ -16,7 +16,7 @@
 
 <script>
   const logo = document.getElementById("logo");
-  logo.style.setProperty("background-image", "url('imgs/MIRA_rettangolo.png')");
+  logo.style.setProperty("background-image", "url('imgs/MIRA_rettangolo.svg')");
 
   // Il logo ha 12 posizioni fisse: 4 righe x 3 colonne.
   const tileCount = 12;
@@ -24,7 +24,7 @@
     Math.floor(Math.random() * (max - min + 1)) + min;
 
   const imageSources = Array.from({length: 16}, (_, index) =>
-    `imgs/optimized/ritratto_crop_${String(index + 1).padStart(3, "0")}.jpg`
+    `imgs/ritratto_crop_${String(index + 1).padStart(3, "0")}.jpg`
   );
 
   const shuffledImages = [...imageSources].sort(() => Math.random() - 0.5);
@@ -42,37 +42,57 @@
   }
 
   let photoIndex = 0;
-  let previousTileIndex = -1;
+  let previousTileIndices = new Set();
+  const batchSize = 4;
+  const entryDelay = 280;
+  const entryDuration = 900;
+  const timeTogether = 1000;
 
-  function showNextPhoto(){
-    let tileIndex;
-    do {
-      tileIndex = Math.floor(Math.random() * tileCount);
-    } while(tileIndex === previousTileIndex);
+  function showNextBatch(){
+    const availableTileIndices = tiles
+      .map((_, index) => index)
+      .filter(index => !previousTileIndices.has(index));
+    const selectedTileIndices = availableTileIndices
+      .sort(() => Math.random() - 0.5)
+      .slice(0, Math.min(batchSize, shuffledImages.length - photoIndex));
 
-    previousTileIndex = tileIndex;
-    const tile = tiles[tileIndex];
-    const image = tile.querySelector(".tile-image");
-    const x = randomBetween(-220, 220);
-    const y = randomBetween(-180, 180);
-    const rotation = randomBetween(-20, 20);
+    previousTileIndices = new Set(selectedTileIndices);
 
-    image.src = shuffledImages[photoIndex];
-    tile.style.setProperty("--x", `${x}px`);
-    tile.style.setProperty("--y", `${y}px`);
-    tile.style.setProperty("--r", `${rotation}deg`);
-    tile.className = "tile is-entering";
+    selectedTileIndices.forEach((tileIndex, batchIndex) => {
+      const tile = tiles[tileIndex];
+      const image = tile.querySelector(".tile-image");
+      const x = randomBetween(-220, 220);
+      const y = randomBetween(-180, 180);
+      const rotation = randomBetween(-20, 20);
 
-    photoIndex++;
-
-    setTimeout(() => {
-      tile.classList.remove("is-entering");
-      tile.classList.add("is-exiting");
+      image.src = shuffledImages[photoIndex];
+      tile.style.setProperty("--x", `${x}px`);
+      tile.style.setProperty("--y", `${y}px`);
+      tile.style.setProperty("--r", `${rotation}deg`);
 
       setTimeout(() => {
-        tile.className = "tile";
+        tile.className = "tile is-entering";
+      }, batchIndex * entryDelay);
+
+      photoIndex++;
+    });
+
+    const batchEntryTime = Math.max(0, selectedTileIndices.length - 1) * entryDelay + entryDuration;
+
+    setTimeout(() => {
+      selectedTileIndices.forEach(tileIndex => {
+        const tile = tiles[tileIndex];
+        tile.classList.remove("is-entering");
+        tile.classList.add("is-exiting");
+      });
+
+      setTimeout(() => {
+        selectedTileIndices.forEach(tileIndex => {
+          tiles[tileIndex].className = "tile";
+        });
+
         if(photoIndex < shuffledImages.length){
-          showNextPhoto();
+          showNextBatch();
         } else {
           document.querySelector(".intro").classList.add("is-finished");
           setTimeout(() => {
@@ -80,11 +100,11 @@
           }, 3000);
         }
       }, 450);
-    }, 1200);
+    }, batchEntryTime + timeTogether);
   }
 
   // Lascia prima visibile solo il logo, poi avvia la sequenza delle foto.
-  setTimeout(showNextPhoto, 1600);
+  setTimeout(showNextBatch, 1600);
 </script>
 </body>
 </html>

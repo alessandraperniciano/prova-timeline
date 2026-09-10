@@ -75,7 +75,7 @@
   }
 
   .tile.is-entering{
-    animation:assemble .45s cubic-bezier(.18,.86,.22,1) forwards;
+    animation:assemble .9s cubic-bezier(.18,.86,.22,1) forwards;
   }
 
   .tile.is-exiting{
