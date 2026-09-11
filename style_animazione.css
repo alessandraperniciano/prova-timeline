@@ -1,19 +1,121 @@
 
   :root{
-    --green:#92B418;
+   --mattone: #E9751F;
+   --arancio: #F29F3D;
+   --giallo: #FFDC4A;
+   --verde: #92B418;
     --gap:7px;
   }
 
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0}
-
-  body{
-    display:grid;
-    place-items:center;
-    background: white;
-    overflow:hidden;
-    font-family:Arial, Helvetica, sans-serif;
+  * {
+    box-sizing:border-box
   }
+  
+  html, body{
+    height:100%;
+    margin:0; 
+    font-family:Roboto, sans-serif; 
+    font-weight:400; 
+    font-size:16px;
+    color:#354435; 
+    background-color:#fff
+  }
+
+  #logo{
+    display:block;
+    margin-top: 5%;
+    margin-left:5%;
+    width:20%;
+    height:20%;
+    display:block;
+    height:auto;
+  }
+
+  
+
+  #fraseConclusiva{
+    text-align:center;
+    padding:0 20px;
+    font-weight:bold;
+    font-size:1.2rem;
+    line-height:1.2;
+    
+  }
+
+  h1{
+    font-family: Roboto;
+    font-weight: 800;
+    text-align:center;
+    padding: 10% 20%;
+    
+  }
+
+  footer{
+    /* Sfondo del piè di pagina */
+    opacity:0.7;
+    flex-shrink: 0;
+    border-top: 1px solid black;
+    padding: 5px 20px;
+}
+
+footer p{
+    margin:0;
+    color: black;
+    font-size:0.7rem;
+    text-align:left;
+}
+
+footer a{
+    color: black;
+    font-style: italic;
+    font-size:0.7rem;
+}
+
+
+  .colore{
+    justify-content:center;
+    text-align:left;
+    padding:0 20px;
+    border-radius:8px;
+    margin:40px 20px;
+
+  }
+
+  .colore > p{
+    margin:.3rem 0;
+  }
+
+  .colore > h3{
+    margin:0 0 1.25rem;
+  }
+
+  .titolo-colore{
+    display:grid;
+    grid-template-columns:2.5rem 1fr;
+    column-gap:.75rem;
+    align-items:center;
+    line-height:1.1;
+  }
+
+  .titolo-colore::before{
+    content:"";
+    grid-row:1 / span 2;
+    width:2.5rem;
+    height:2.5rem;
+    background-color:var(--colore-paragrafo);
+  }
+
+  .nome-colore{
+    font-size:.85rem;
+    font-weight:800;
+    letter-spacing:.02em;
+  }
+
+  #mattone{--colore-paragrafo:var(--mattone)}
+  #arancio{--colore-paragrafo:var(--arancio)}
+  #giallo{--colore-paragrafo:var(--giallo)}
+  #verde{--colore-paragrafo:var(--verde)}
+
 
   .intro{
     display:flex;
